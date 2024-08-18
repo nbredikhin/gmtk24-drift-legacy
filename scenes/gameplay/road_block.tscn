@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://10676mplyrbs"]
+
+[ext_resource type="Script" path="res://scripts/road_block.gd" id="1_05qma"]
+[ext_resource type="Texture2D" uid="uid://d1plcf0y7jn2o" path="res://art/objects/road_block_1.tres" id="1_qtvlf"]
+[ext_resource type="Texture2D" uid="uid://dwne3qdwah2k3" path="res://art/objects/road_block_2.tres" id="2_qayy5"]
+[ext_resource type="Texture2D" uid="uid://dewekaw6toqaw" path="res://art/objects/road_block_3.tres" id="3_mxoiu"]
+[ext_resource type="Texture2D" uid="uid://cltawuvip7rak" path="res://art/objects/road_block_4.tres" id="4_bn3qx"]
+[ext_resource type="Texture2D" uid="uid://de5wnka0rc2vw" path="res://art/objects/road_block_5.tres" id="5_oxnr5"]
+[ext_resource type="Texture2D" uid="uid://ds45sgblhrn2c" path="res://art/light_m.png" id="6_qko71"]
+
+[sub_resource type="Gradient" id="Gradient_bdxr2"]
+offsets = PackedFloat32Array(0, 0.492593, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yc3lk"]
+gradient = SubResource("Gradient_bdxr2")
+width = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18o77"]
+size = Vector2(64, 8)
+
+[node name="RoadBlock" type="StaticBody2D"]
+position = Vector2(79, 89)
+script = ExtResource("1_05qma")
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.337255)
+position = Vector2(1, 4.31498)
+rotation = -1.5708
+scale = Vector2(0.34099, 64.7041)
+texture = SubResource("GradientTexture1D_yc3lk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-8, 1)
+texture = ExtResource("1_qtvlf")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(18, 1)
+texture = ExtResource("1_qtvlf")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(28, -1)
+texture = ExtResource("2_qayy5")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-24, -1)
+texture = ExtResource("3_mxoiu")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(5, -1)
+texture = ExtResource("4_bn3qx")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(-17, 1)
+texture = ExtResource("5_oxnr5")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(-1, 0)
+color = Color(0.741176, 0.027451, 0, 1)
+energy = 0.93
+shadow_enabled = true
+texture = ExtResource("6_qko71")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_18o77")
