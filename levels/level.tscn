@@ -34,6 +34,7 @@ texture_filter = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="GameManager"]
 layer = 100
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameManager/CanvasLayer"]
 anchors_preset = 15
@@ -174,6 +175,8 @@ debug_color = Color(0.65098, 0.623529, 0.901961, 0.0627451)
 [node name="LevelAreaTest" type="Area2D" parent="." groups=["level_area"]]
 position = Vector2(86, 436)
 script = ExtResource("6_2br2h")
+area_title = "Dev Area"
+first_enter_dialogue_id = "dialogue_example"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelAreaTest"]
 shape = SubResource("RectangleShape2D_at858")
@@ -182,6 +185,7 @@ debug_color = Color(0.431373, 0.815686, 0.678431, 0.0705882)
 [node name="LevelAreaTest2" type="Area2D" parent="." groups=["level_area"]]
 position = Vector2(832, 221)
 script = ExtResource("6_2br2h")
+area_title = "Mountain View"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelAreaTest2"]
 position = Vector2(103.125, -200.313)

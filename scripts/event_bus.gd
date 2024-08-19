@@ -11,3 +11,4 @@ signal player_drift_zone_points(player: Car, points: int)
 signal reputation_changed(amount: int)
 
 signal player_dialogue(dialogue_id: String)
+signal player_enter_level_area(area: LevelArea)

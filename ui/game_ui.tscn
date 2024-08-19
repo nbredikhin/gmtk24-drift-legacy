@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvri2q72111i"]
+[gd_scene load_steps=17 format=3 uid="uid://bvri2q72111i"]
 
 [ext_resource type="Script" path="res://ui/drift_zone_label.gd" id="1_gwvyc"]
 [ext_resource type="Script" path="res://ui/drift_points_label.gd" id="1_u43c4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c1no70bi0bq4l" path="res://art/icons/icon_star_fill.tres" id="4_bk448"]
 [ext_resource type="Texture2D" uid="uid://cos4migk1o44h" path="res://art/faces/grandfather_portrait.png" id="6_d1u8d"]
 [ext_resource type="Script" path="res://ui/dialogue.gd" id="6_e1ukd"]
+[ext_resource type="Script" path="res://ui/area_label.gd" id="8_85rqf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bxaqk"]
 font_size = 24
@@ -333,5 +334,6 @@ grow_horizontal = 2
 text = "THE DOCKS"
 label_settings = SubResource("LabelSettings_7grw5")
 horizontal_alignment = 1
+script = ExtResource("8_85rqf")
 
 [connection signal="timeout" from="HUD/DriftZone/DriftZoneCompletedLabel/HideTimer" to="HUD/DriftZone" method="_on_hide_timer_timeout"]
