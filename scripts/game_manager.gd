@@ -1,6 +1,8 @@
 class_name GameManager
 extends Node
 
+var reputation := 0
+
 
 func _ready():
 	pass
@@ -9,3 +11,8 @@ func _ready():
 
 func _process(delta):
 	pass
+
+
+func add_reputation(amount: int): 
+	reputation += amount
+	EventBus.reputation_changed.emit(reputation)

@@ -10,10 +10,11 @@ func _ready() -> void:
 
 func _on_drift_start(player: Car):
 	visible = true
+	text = "DRIFT\n0"
 	
 
 func _on_drift_points(player: Car, points: int):
-	text = str("DRIFT\n",points)
+	text = str("DRIFT\n",Tools.thousands_sep(points))
 	
 	
 func _on_drift_end(player: Car, is_completed: bool, points: int):

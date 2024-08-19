@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/car.gd" id="1_vsk4j"]
 [ext_resource type="Texture2D" uid="uid://cxeooncgb7gk7" path="res://art/cars/car1.tres" id="2_6ub6n"]
-[ext_resource type="Script" path="res://scripts/car_drift.gd" id="3_1wf1u"]
+[ext_resource type="Script" path="res://scripts/drift_points.gd" id="3_1wf1u"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cicj0"]
 friction = 0.0
@@ -29,5 +29,5 @@ shape = SubResource("CircleShape2D_calxe")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_fm21j")
 
-[node name="CarDrift" type="Node" parent="."]
+[node name="DriftPoints" type="Node" parent="."]
 script = ExtResource("3_1wf1u")

@@ -1,12 +1,19 @@
 extends StaticBody2D
 
 
-# Called when the node enters the scene tree for the first time.
+@export var required_rep := 50
+
 func _ready():
-	pass # Replace with function body.
-	queue_free()
+	EventBus.reputation_changed.connect(_on_rep_change)
+	$LabelContainer.global_position = global_position + Vector2.UP * 5.0
+	$LabelContainer.global_rotation = 0.0
+	$LabelContainer/Label.text = str(required_rep," REP")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _on_rep_change(rep: int):
+	if rep >= required_rep:
+		queue_free()
+
+
 func _process(delta):
 	pass

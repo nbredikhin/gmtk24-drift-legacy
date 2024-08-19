@@ -1,4 +1,11 @@
+class_name DriftZone
 extends Area2D
+
+@export var points_stars2 := 200
+@export var points_stars3 := 300
+@export var reputation := 50
+
+var _is_completed = false
 
 var _is_active := false
 var _direction := 0
@@ -82,13 +89,22 @@ func _find_nearest_point(pos: Vector2) -> int:
 	return nearest_point
 
 
+func get_stars(points: int) -> int:
+	if points >= points_stars3:
+		return 3
+	elif points >= points_stars2:
+		return 2
+	else:
+		return 1
+
+
 func _end_drift_zone(is_completed: bool):
 	if not _is_active:
 		return
 		
 	_is_active = false
 	
-	EventBus.player_exit_drift_zone.emit(_player, is_completed, 0)
+	EventBus.player_exit_drift_zone.emit(_player, self, is_completed, _player.get_node("DriftPoints").get_total_drift_zone_points())
 	print("DriftZone stopped, is_completed=", is_completed)
 
 
@@ -130,7 +146,7 @@ func _on_body_entered(body: Node2D):
 	_min_dist_next = 999999.0
 	_player = body
 	_is_active = true
-	EventBus.player_enter_drift_zone.emit(_player)
+	EventBus.player_enter_drift_zone.emit(_player, self)
 	print("DriftZone started: _direction=", _direction, ", _current_point=", _current_point)
 
 
@@ -141,6 +157,10 @@ func _on_body_exited(body):
 	var is_last_point = _current_point <= 1 or _current_point >= _points_count - 2
 	var is_completed = is_last_point and _max_segment_progress > 0.95
 	_end_drift_zone(is_completed)
+	
+	if is_completed and not _is_completed:
+		get_tree().get_first_node_in_group("game_manager").add_reputation(reputation)
+		_is_completed = true
 	
 
 func create_collision_polygon_from_line(line: Line2D) -> CollisionPolygon2D:

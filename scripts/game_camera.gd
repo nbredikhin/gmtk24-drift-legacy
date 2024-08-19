@@ -16,32 +16,7 @@ var _transition_target_position = Vector2.ZERO
 
 func _ready():
 	if not target:
-		target = get_tree().get_first_node_in_group("player")		
-		
-	# stuff
-# Get the Camera2D's global position and zoom
-	#var camera_position = self.global_position
-	#var camera_zoom = self.zoom
-#
-	## Get the size of the viewport in pixels
-	#var viewport_size = get_viewport().get_visible_rect().size
-#
-	## Calculate the size of the viewport in world coordinates
-	#var half_world_size = (viewport_size / 2) / camera_zoom
-#
-	## Calculate the world coordinates of the screen edges
-	#var top_left = camera_position - half_world_size
-	#var bottom_right = camera_position + half_world_size
-#
-	#var left = top_left.x
-	#var right = bottom_right.x
-	#var top = top_left.y
-	#var bottom = bottom_right.y
-			
-	#_transition_camera = Camera2D.new()
-	#_transition_camera.zoom = zoom
-	#await get_tree().process_frame
-	#get_tree().current_scene.add_child(_transition_camera)
+		target = get_tree().get_first_node_in_group("player")
 
 func get_camera_rect() -> Rect2:
 	var pos = position # Camera's center
@@ -111,40 +86,8 @@ func transition_to_level_area(area: LevelArea):
 		var new_position = get_pos_within_limits(global_position, top_left, bottom_right)
 		get_tree().paused = true
 		do_transition(new_position, 0.75)
-		#pass
-		#var duration = 3.0
-		#var tween = create_tween().set_trans(Tween.TRANS_LINEAR)
-		#tween.set_parallel(true)
-		#tween.tween_property(self, "_limit_top_left", top_left, duration)
-		#tween.tween_property(self, "_limit_bottom_right", bottom_right, duration)
-		#tween.tween_property(get_tree(), "paused", false, duration)
-		
-		###
-		#_start_limit_top_left = Vector2(limit_left, limit_top)
-		#_start_limit_bottom_right = Vector2(limit_right, limit_bottom)
-		#_target_limit_top_left = top_left
-		#_target_limit_bottom_right = bottom_right
-		#_transition_start_position = global_position
-		#_is_transitioning = true
-		#_transition_progress = 0.0
-		#_transition_camera.make_current()
-		
-		###
-		#limit_smoothed = true
-		#position_smoothing_speed = 0.3
-		#limit_left = top_left.x
-		#limit_top = top_left.y
-		#limit_right = bottom_right.x
-		#limit_bottom = bottom_right.y
 	else:
 		reset_smoothing()
 		_limit_top_left = top_left
 		_limit_bottom_right = bottom_right
 		_is_limits_initialized = true
-		#_is_transitioning = false
-		#print(global_position)
-		#limit_left = top_left.x
-		#limit_top = top_left.y
-		#limit_right = bottom_right.x
-		#limit_bottom = bottom_right.y
-		#print(global_position)

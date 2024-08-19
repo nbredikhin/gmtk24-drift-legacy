@@ -15,6 +15,8 @@ extends Node
 @export var time_cooldown := 1.5
 
 var points := 0.0
+var drift_zone_points := 0.0
+var is_drift_zone_active := false
 
 var _drift_side := 0.0
 var _cooldown := 0.0
@@ -28,6 +30,21 @@ var _time_drifting_total := 0.0
 
 func _ready() -> void:
 	_car.connect("body_entered", _handle_body_enter)
+	EventBus.player_enter_drift_zone.connect(_on_enter_drift_zone)
+	EventBus.player_exit_drift_zone.connect(_on_exit_drift_zone)
+	
+
+func _on_enter_drift_zone(player: Car, drift_zone: DriftZone):
+	if is_drift_zone_active:
+		return
+	is_drift_zone_active = true
+	drift_zone_points = 0.0
+	points = 0.0
+	
+
+func _on_exit_drift_zone(player: Car, drift_zone: DriftZone, is_success: bool, _points: int):
+	is_drift_zone_active = false
+	drift_zone_points = 0.0
 
 
 func _handle_body_enter(body: PhysicsBody2D):
@@ -81,6 +98,12 @@ func add_points(amount: float):
 	points += amount
 	if amount > 0.0:
 		EventBus.player_drift_points.emit(_car, round(points))
+		if is_drift_zone_active:
+			EventBus.player_drift_zone_points.emit(_car, get_total_drift_zone_points())
+
+
+func get_total_drift_zone_points():
+	return round(points + drift_zone_points)
 
 
 func _update_drift_side(side: float):
@@ -113,7 +136,8 @@ func _complete_drift(is_success: bool = false):
 	_cooldown = time_cooldown
 	EventBus.player_end_drift.emit(_car, is_success, round(points))
 	if is_success:
-		pass
+		if is_drift_zone_active:
+			drift_zone_points += points
 		#emit_signal("points_earned", round(points))
 
 	points = 0.0
