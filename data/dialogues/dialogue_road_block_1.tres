@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=3 format=3 uid="uid://b2bvvtrkvblfk"]
+
+[ext_resource type="Texture2D" uid="uid://cos4migk1o44h" path="res://art/faces/grandfather_portrait.png" id="1_s2g26"]
+[ext_resource type="Script" path="res://scripts/dialogue_data.gd" id="2_ang2k"]
+
+[resource]
+script = ExtResource("2_ang2k")
+name = "Grandfather"
+name_color = Color(0.201443, 0.530938, 0.307217, 1)
+avatar = ExtResource("1_s2g26")
+lines = Array[String](["Yay next area is opened", "Go south"])

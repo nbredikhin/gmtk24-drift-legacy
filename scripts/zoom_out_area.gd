@@ -19,8 +19,12 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 		
 	var cam = get_tree().get_first_node_in_group("game_camera")
+	cam.set_zoom_out(new_zoom, camera_offset)
 
 
 func _on_body_exited(body: Node2D) -> void:
 	if not body.is_in_group("player"):
 		return
+	
+	var cam = get_tree().get_first_node_in_group("game_camera")
+	cam.clear_zoom_out()

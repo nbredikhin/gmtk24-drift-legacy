@@ -9,3 +9,5 @@ signal player_exit_drift_zone(player: Car, zone: DriftZone, is_success: bool, po
 signal player_drift_zone_points(player: Car, points: int)
 
 signal reputation_changed(amount: int)
+
+signal player_dialogue(dialogue_id: String)

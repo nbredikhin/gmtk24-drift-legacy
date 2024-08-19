@@ -2,6 +2,7 @@ extends StaticBody2D
 
 
 @export var required_rep := 50
+@export var trigger_dialogue_id := ""
 
 func _ready():
 	EventBus.reputation_changed.connect(_on_rep_change)
@@ -13,6 +14,8 @@ func _ready():
 func _on_rep_change(rep: int):
 	if rep >= required_rep:
 		queue_free()
+		if trigger_dialogue_id.is_empty() == false:
+			EventBus.player_dialogue.emit(trigger_dialogue_id)
 
 
 func _process(delta):

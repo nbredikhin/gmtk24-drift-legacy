@@ -5,6 +5,8 @@ extends Area2D
 @export var points_stars3 := 300
 @export var reputation := 50
 
+@export var hide_line := true
+
 var _is_completed = false
 
 var _is_active := false
@@ -25,6 +27,8 @@ var _line_pos := Vector2.ZERO
 
 
 func _ready():
+	if hide_line:
+		$Line2D.visible = false
 	for point in $Line2D.points:
 		_points_global.append($Line2D.to_global(point))
 	

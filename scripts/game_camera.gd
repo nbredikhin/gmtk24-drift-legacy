@@ -13,8 +13,17 @@ var _transition_duration = 0.0
 var _transition_start_position = Vector2.ZERO
 var _transition_target_position = Vector2.ZERO
 
+var _target_zoom := 1.0
+var _current_zoom := 1.0
+var _default_zoom := 1.0
+var _current_offset := Vector2.ZERO
+var _target_offset := Vector2.ZERO
+
 
 func _ready():
+	_default_zoom = zoom.x
+	_target_zoom = _default_zoom
+	_current_zoom = _default_zoom
 	if not target:
 		target = get_tree().get_first_node_in_group("player")
 
@@ -42,6 +51,16 @@ func get_pos_within_limits(target_pos: Vector2, top_left: Vector2, bottom_right:
 	return camera_position
 
 
+func set_zoom_out(zoom: float, offset: Vector2):
+	_target_zoom = zoom
+	_target_offset = offset
+
+
+func clear_zoom_out():
+	_target_zoom = _default_zoom
+	_target_offset = Vector2.ZERO
+
+
 func do_transition(target_pos: Vector2, duration: float):
 	_transition_progress = 0.0
 	_transition_duration = duration
@@ -51,6 +70,17 @@ func do_transition(target_pos: Vector2, duration: float):
 
 
 func _process(delta):
+	if not enabled:
+		_is_limits_initialized = false
+		return
+
+	_current_zoom = lerp(_current_zoom, _target_zoom, delta * 1.0)
+	if abs(_current_zoom - zoom.x) > 0.01:
+		zoom.x = _current_zoom
+		zoom.y = _current_zoom
+	
+	_current_offset = lerp(_current_offset, _target_offset, delta * 1.0)
+	
 	if _transition_running:
 		_transition_progress += min(1.0, delta / _transition_duration)
 		
@@ -66,12 +96,13 @@ func _process(delta):
 			get_tree().paused = false
 	else:
 		if target:
-			var target_pos = target.global_position
+			var target_pos = target.global_position + _current_offset
 			global_position = get_pos_within_limits(target_pos, _limit_top_left, _limit_bottom_right)
-	
 
 
 func transition_to_level_area(area: LevelArea):
+	if not enabled:
+		return
 	var shape = area.get_child(0) as CollisionShape2D
 	if not shape:
 		return

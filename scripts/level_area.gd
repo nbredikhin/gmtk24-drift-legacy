@@ -1,6 +1,8 @@
 class_name LevelArea
 extends Area2D
 
+@export var area_title := "Forgot to add name,\nbut it's a jam so\nI guess we're fine"
+
 var player_body: Node2D = null
 
 # Called when the node enters the scene tree for the first time.
