@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bskeq6qkxgqcs"]
+[gd_scene load_steps=2 format=3 uid="uid://bskeq6qkxgqcs"]
 
 [ext_resource type="Script" path="res://scripts/drift_zone.gd" id="1_3cwn3"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_te3bg"]
-size = Vector2(20, 91)
 
 [node name="DriftZone1" type="Area2D"]
 position = Vector2(521, -79)
@@ -14,15 +11,6 @@ position = Vector2(-6, -7)
 points = PackedVector2Array(-176, -4, 7, -5, 6, 183)
 width = 90.0
 default_color = Color(0.545098, 0.976471, 0.184314, 0.2)
-
-[node name="Shape1" type="CollisionShape2D" parent="."]
-position = Vector2(-182, -10.5)
-shape = SubResource("RectangleShape2D_te3bg")
-
-[node name="Shape2" type="CollisionShape2D" parent="."]
-position = Vector2(1, 176)
-rotation = -1.57079
-shape = SubResource("RectangleShape2D_te3bg")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,15 +1,25 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhq8i2ted2dkb"]
+[gd_scene load_steps=16 format=3 uid="uid://dhq8i2ted2dkb"]
 
 [ext_resource type="PackedScene" uid="uid://c7v2tamsxxqjc" path="res://scenes/common/game_manager.tscn" id="1_t7si5"]
 [ext_resource type="TileSet" uid="uid://5ibqdibsgfj8" path="res://art/tilesets/tileset_ground.tres" id="1_y2bwi"]
 [ext_resource type="TileSet" uid="uid://mvxpcn8kjrbl" path="res://art/tilesets/tileset_parallax.tres" id="2_hgb1d"]
-[ext_resource type="PackedScene" uid="uid://bvri2q72111i" path="res://ui/game_ui.tscn" id="2_tkx0e"]
+[ext_resource type="Texture2D" uid="uid://cxeooncgb7gk7" path="res://art/cars/car1.tres" id="2_nqaya"]
+[ext_resource type="Script" path="res://scripts/car.gd" id="2_rnd5v"]
 [ext_resource type="Texture2D" uid="uid://ds45sgblhrn2c" path="res://art/light_m.png" id="3_8dul8"]
 [ext_resource type="Script" path="res://scripts/game_camera.gd" id="5_3cbi4"]
 [ext_resource type="Script" path="res://scripts/level_area.gd" id="6_2br2h"]
-[ext_resource type="PackedScene" uid="uid://c7hlpni0jcysy" path="res://scenes/car.tscn" id="7_7aral"]
 [ext_resource type="PackedScene" uid="uid://10676mplyrbs" path="res://scenes/gameplay/road_block.tscn" id="9_djylt"]
 [ext_resource type="PackedScene" uid="uid://bskeq6qkxgqcs" path="res://scenes/gameplay/drift_zone.tscn" id="10_p1og6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cicj0"]
+friction = 0.0
+bounce = 0.29
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_calxe"]
+radius = 7.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fm21j"]
+polygon = PackedVector2Array(-6, 5, -3, 8, 3, 8, 6, 5, 6, -4, 3, -8, -3, -8, -6, -4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hh7v"]
 size = Vector2(873, 792)
@@ -22,13 +32,8 @@ texture_filter = 1
 
 [node name="GameManager" parent="." instance=ExtResource("1_t7si5")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="GameManager"]
-layer = 100
-
-[node name="GameUI" parent="GameManager/CanvasLayer" instance=ExtResource("2_tkx0e")]
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-layer = 2
+layer = 100
 follow_viewport_enabled = true
 follow_viewport_scale = 1.04
 
@@ -104,7 +109,7 @@ layer_0/tile_data = PackedInt32Array(458756, 0, 0, 393220, 0, 0, 327684, 0, 0, 2
 [node name="Camera2D" type="Camera2D" parent="." groups=["game_camera"]]
 process_mode = 3
 position = Vector2(80, 5)
-zoom = Vector2(4, 4)
+zoom = Vector2(0.5, 0.5)
 process_callback = 0
 position_smoothing_speed = 30.0
 drag_left_margin = 0.1
@@ -113,7 +118,20 @@ drag_right_margin = 0.1
 drag_bottom_margin = 0.1
 script = ExtResource("5_3cbi4")
 
-[node name="Car" parent="." instance=ExtResource("7_7aral")]
+[node name="Car" type="RigidBody2D" parent="." groups=["player"]]
+position = Vector2(80, 5)
+physics_material_override = SubResource("PhysicsMaterial_cicj0")
+angular_damp = 14.366
+script = ExtResource("2_rnd5v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Car"]
+texture = ExtResource("2_nqaya")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Car"]
+shape = SubResource("CircleShape2D_calxe")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Car"]
+occluder = SubResource("OccluderPolygon2D_fm21j")
 
 [node name="LevelAreaCityHub" type="Area2D" parent="." groups=["level_area"]]
 position = Vector2(158, 57)
@@ -144,10 +162,9 @@ points = PackedVector2Array(-176, -4, 6, -4, 6, 183)
 position = Vector2(111, -309)
 
 [node name="Line2D" parent="DriftZone2" index="0"]
-position = Vector2(18, 4)
-points = PackedVector2Array(91, 34, 376, 24, 351, -90, 118, -100, -4, -61, -35, -144, -178, -59, -178, 12, -48, 35, -48, 83)
-width = 60.0
-default_color = Color(0, 0.980392, 0.85098, 0.2)
+points = PackedVector2Array(-176, -4, 6, -4, -31, 221)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(405, -89)

@@ -7,23 +7,19 @@ var input_acceleration = 0.0
 var input_steering = 0.0
 var input_brake = 0.0
 
-var max_speed = 130.0
-var max_acceleration = 1.5
-var max_engine_brake = 1.0
-var max_tire_friction = 3.0
-var max_steering_speed = 35.0
+var max_speed := 130.0
+var max_acceleration := 1.5
+var max_engine_brake := 1.0
+var max_tire_friction := 3.0
+var max_steering_speed := 35.0
 
-var steering_min_speed = 5.0
-var steering_low_speed = 30.0
+var steering_min_speed := 5.0
+var steering_low_speed := 30.0
 
-var drive_angle = 0.0
+var drive_angle := 0.0
+var speed := 0.0
 
-var _speed = 0.0
-var _local_velocity = Vector2.ZERO
-
-
-func _ready():
-	pass # Replace with function body.
+var _local_velocity := Vector2.ZERO
 
 
 func _process(delta):
@@ -38,13 +34,13 @@ func _physics_process(delta):
 
 
 func _update_drive() -> void:
-	_speed = linear_velocity.length()
+	speed = linear_velocity.length()
 	_local_velocity = to_local(global_position - linear_velocity)
 
 	drive_angle = rad_to_deg(_local_velocity.angle() - PI * 0.5)
 
-	var engine_force: float = 0.0
-	var acceleration_mul = 1.0 # acceleration_curve.interpolate_baked(_speed / max_speed)
+	var engine_force := 0.0
+	var acceleration_mul := 1.0 # acceleration_curve.interpolate_baked(_speed / max_speed)
 	engine_force += input_acceleration * max_acceleration * acceleration_mul
 
 	var engine_brake_mul = clamp(
@@ -56,7 +52,7 @@ func _update_drive() -> void:
 		* clamp(_local_velocity.y / MAX_ENGINE_BRAKE_SPEED, -1.0, 1.0)
 	)
 
-	var drive_force: Vector2 = Vector2.ZERO
+	var drive_force := Vector2.ZERO
 
 	drive_force += Vector2.UP * engine_force
 	var tire_friction = clamp(_local_velocity.x * max_tire_friction, -max_tire_friction, max_tire_friction)
@@ -67,12 +63,12 @@ func _update_drive() -> void:
 
 
 func _update_steering() -> void:
-	var steering_torque = 0.0
-	var steering_mul = 1.0
-	if _speed < steering_min_speed:
+	var steering_torque := 0.0
+	var steering_mul := 1.0
+	if speed < steering_min_speed:
 		steering_mul = 0.0
-	elif _speed < steering_low_speed:
-		steering_mul = (_speed - steering_min_speed) / (steering_low_speed - steering_min_speed)
+	elif speed < steering_low_speed:
+		steering_mul = (speed - steering_min_speed) / (steering_low_speed - steering_min_speed)
 		steering_mul = pow(steering_mul, 1.3)
 
 	# Handle reverse steering
