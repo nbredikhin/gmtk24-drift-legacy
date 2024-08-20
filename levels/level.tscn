@@ -1104,7 +1104,6 @@ required_rep = 200
 unlock_text = "Docks"
 
 [node name="CollisionShape2D" parent="RoadBlock3" index="1"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yupbb")
 
 [node name="RoadBlock4" parent="." instance=ExtResource("9_djylt")]
@@ -1114,7 +1113,6 @@ trigger_dialogue_id = "dialogue_finish_docks"
 unlock_text = "Mountain"
 
 [node name="CollisionShape2D" parent="RoadBlock4" index="1"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yupbb")
 
 [node name="RoadBlock5" parent="." instance=ExtResource("9_djylt")]
@@ -1124,7 +1122,6 @@ trigger_dialogue_id = "dialogue_pre_final"
 unlock_text = "Serenity Peak"
 
 [node name="CollisionShape2D" parent="RoadBlock5" index="1"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yupbb")
 
 [node name="DriftZones" type="Node" parent="."]
@@ -1248,12 +1245,10 @@ rotation = -0.00923542
 [node name="DriftZoneBanner2" parent="DriftZones/Banners" instance=ExtResource("14_pbtfd")]
 position = Vector2(473, 76)
 rotation = -0.0312713
-scale = Vector2(1, 1)
 
 [node name="DriftZoneBanner3" parent="DriftZones/Banners" instance=ExtResource("14_pbtfd")]
 position = Vector2(346, -53)
 rotation = -0.0312713
-scale = Vector2(1, 1)
 
 [node name="DriftZoneBanner4" parent="DriftZones/Banners" instance=ExtResource("14_pbtfd")]
 position = Vector2(341, 27)
@@ -1286,7 +1281,6 @@ rotation = 0.020233
 [node name="DriftZoneBanner12" parent="DriftZones/Banners" instance=ExtResource("14_pbtfd")]
 position = Vector2(985, -837)
 rotation = 0.106632
-scale = Vector2(1, 1)
 
 [node name="DriftZoneBanner13" parent="DriftZones/Banners" instance=ExtResource("14_pbtfd")]
 position = Vector2(986, -693)
@@ -1677,7 +1671,7 @@ position = Vector2(2, -2)
 curve = SubResource("Curve2D_twlr7")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="CityStuff/Path2D"]
-position = Vector2(272, -99.3643)
+position = Vector2(272, -99.3635)
 rotation = 1.5708
 progress = 538.311
 
