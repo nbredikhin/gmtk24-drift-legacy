@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=3 format=3 uid="uid://demvjk1n7lnrc"]
+
+[ext_resource type="Texture2D" uid="uid://dfbmhlern4ws7" path="res://art/faces/rival_blue_portrait.png" id="1_5ar61"]
+[ext_resource type="Script" path="res://scripts/dialogue_data.gd" id="2_0wusi"]
+
+[resource]
+script = ExtResource("2_0wusi")
+name = "Slippery Steve"
+name_color = Color(0.164706, 0.0823529, 0.647059, 1)
+avatar = ExtResource("1_5ar61")
+lines = Array[String](["This is our district, rookie!", "They call me Slippery Steve, and for good reason, I'm slicker than oil on a wet track", "You've got no chance against me, especially in these two nastiest drift zones", "So why don’t you just skid on outta here?"])

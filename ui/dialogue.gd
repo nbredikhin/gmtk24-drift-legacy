@@ -3,6 +3,7 @@ extends Control
 var _dialogue_data: DialogueData
 var _line_index := 0
 var _text_duration := 2.0
+var _time = 0.0
 
 func _ready() -> void:
 	EventBus.player_dialogue.connect(_on_start_dialogue)
@@ -26,6 +27,12 @@ func _process(delta: float) -> void:
 		return
 		
 	$TextLabel.visible_ratio = min(1.0, $TextLabel.visible_ratio + delta / _text_duration)
+	if $TextLabel.visible_ratio < 1.0:
+		_time += delta * 25.0
+		$Avatar.scale.y = 1.0 + cos(_time) * 0.07
+	else:
+		#$Avatar.scale = Vector2(1.0, 1.0)
+		_time = 0
 	
 	if Input.is_action_just_pressed("brake"):
 		_advance_dialogue()

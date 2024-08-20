@@ -9,7 +9,7 @@ func _ready():
 	$CanvasLayer.visible = true
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	
-	EventBus.player_dialogue.emit("dialogue_enter_area_2")
+	EventBus.player_dialogue.emit("dialogue_finish_docks")
 	EventBus.player_exit_drift_zone.connect(_on_exit_drift_zone)
 
 

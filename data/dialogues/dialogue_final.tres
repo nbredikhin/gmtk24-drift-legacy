@@ -8,4 +8,4 @@ script = ExtResource("2_esg3j")
 name = "Grandfather"
 name_color = Color(0.201443, 0.530938, 0.307217, 1)
 avatar = ExtResource("1_pgbso")
-lines = Array[String](["I'm proud af"])
+lines = Array[String](["You did it, kid... You've built your drift skills from the ground up, and now you've scaled your reputation to the top.", "Look at that view—the city at your feet, and your name on every street.", "I'm proud of you, just like I always knew I would be. This is your moment."])

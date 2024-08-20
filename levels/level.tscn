@@ -1027,7 +1027,7 @@ texture = ExtResource("13_x3teh")
 position = Vector2(-692, -340)
 script = ExtResource("6_2br2h")
 area_title = "Docks"
-first_enter_dialogue_id = "dialogue_enter_area_2"
+first_enter_dialogue_id = "dialogue_enter_docks"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelAreaDocks"]
 position = Vector2(319.125, -353.313)
@@ -1038,7 +1038,6 @@ debug_color = Color(0.431373, 0.815686, 0.678431, 0.0705882)
 position = Vector2(210, 1146)
 script = ExtResource("6_2br2h")
 area_title = "Kuroyama Pass"
-first_enter_dialogue_id = "dialogue_enter_area_2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelAreaMountain"]
 position = Vector2(146.125, -174.5)

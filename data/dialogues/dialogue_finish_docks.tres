@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=3 format=3 uid="uid://vw1jlmd8sa26"]
+
+[ext_resource type="Texture2D" uid="uid://dfbmhlern4ws7" path="res://art/faces/rival_blue_portrait.png" id="1_jw4ib"]
+[ext_resource type="Script" path="res://scripts/dialogue_data.gd" id="2_1jqnl"]
+
+[resource]
+script = ExtResource("2_1jqnl")
+name = "Slippery Steve"
+name_color = Color(0.164706, 0.0823529, 0.647059, 1)
+avatar = ExtResource("1_jw4ib")
+lines = Array[String](["Wha.. You actually did it? No way!", "Alright, maybe you’re better than I thought... But don’t get too cocky, pal", "The mountain ahead is a whole different beast. The drift zone up there? It’s the stuff of legends.", "You stand no chance!"])
