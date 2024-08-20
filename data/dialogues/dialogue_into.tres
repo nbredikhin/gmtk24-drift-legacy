@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=3 format=3 uid="uid://d3p5rurt6v7e"]
+
+[ext_resource type="Texture2D" uid="uid://cos4migk1o44h" path="res://art/faces/grandfather_portrait.png" id="1_igbfu"]
+[ext_resource type="Script" path="res://scripts/dialogue_data.gd" id="2_vxigd"]
+
+[resource]
+script = ExtResource("2_vxigd")
+name = "Grandfather"
+name_color = Color(0.201443, 0.530938, 0.307217, 1)
+avatar = ExtResource("1_igbfu")
+lines = Array[String](["Kid, I’ve been waiting for this moment. This old car has seen its share of action, but now it’s your turn...", "... to take the wheel. ", "In this city of drifters, reputation is everything: your future rides on the scale of it", "The streets don’t care about anything else. I’m putting my trust in you to carry on the legacyq", "Go to a drift zone and build up your score to start making a name for yourself."])

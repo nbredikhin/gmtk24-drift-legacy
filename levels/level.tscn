@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dhq8i2ted2dkb"]
+[gd_scene load_steps=37 format=3 uid="uid://dhq8i2ted2dkb"]
 
 [ext_resource type="PackedScene" uid="uid://c7v2tamsxxqjc" path="res://scenes/common/game_manager.tscn" id="1_t7si5"]
 [ext_resource type="TileSet" uid="uid://5ibqdibsgfj8" path="res://art/tilesets/tileset_ground.tres" id="1_y2bwi"]
@@ -15,10 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://10676mplyrbs" path="res://scenes/gameplay/road_block.tscn" id="9_djylt"]
 [ext_resource type="PackedScene" uid="uid://bskeq6qkxgqcs" path="res://scenes/gameplay/drift_zone.tscn" id="10_p1og6"]
 [ext_resource type="Texture2D" uid="uid://7oy1o8k8ttfe" path="res://art/docks_container.png" id="12_pkrtj"]
-[ext_resource type="Script" path="res://scripts/map_camera.gd" id="13_2wibl"]
 [ext_resource type="Texture2D" uid="uid://cxeooncgb7gk7" path="res://art/cars/car1.tres" id="13_x3teh"]
 [ext_resource type="PackedScene" uid="uid://bkj300tmtbslw" path="res://scenes/props/drift_zone_banner.tscn" id="14_pbtfd"]
 [ext_resource type="PackedScene" uid="uid://bx3cb1r37vgn8" path="res://scenes/drift_zone_score.tscn" id="15_cxfx6"]
+[ext_resource type="Texture2D" uid="uid://x8nk1i2ii5ab" path="res://art/sign.png" id="20_icc3t"]
 [ext_resource type="Texture2D" uid="uid://cj0cmbdlxt6xk" path="res://art/tree.png" id="20_oquwl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6wg2q"]
@@ -84,6 +84,9 @@ _data = {
 }
 point_count = 8
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uyh48"]
+polygon = PackedVector2Array(-6, 6, -6, -5, -4, -8, 4, -8, 5, -7, 5, 6, 4, 8, -4, 8)
+
 [node name="Level" type="Node2D"]
 texture_filter = 1
 
@@ -111,13 +114,6 @@ follow_viewport_scale = 0.6
 position = Vector2(-230, 1815)
 texture = ExtResource("5_6dq3h")
 
-[node name="MapCamera" type="Camera2D" parent="."]
-visible = false
-visibility_layer = 1025
-enabled = false
-zoom = Vector2(0.1, 0.1)
-script = ExtResource("13_2wibl")
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 layer = 2
 follow_viewport_enabled = true
@@ -139,9 +135,9 @@ layer_0/tile_data = PackedInt32Array(-1835024, 0, 0, -1769488, 0, 0, -1703952, 0
 
 [node name="Label" type="Label" parent="TileMapGround"]
 offset_left = 146.0
-offset_top = 46.0
+offset_top = 15.0
 offset_right = 271.0
-offset_bottom = 69.0
+offset_bottom = 38.0
 scale = Vector2(0.232161, 0.281711)
 text = "W - ACCELERATE"
 label_settings = SubResource("LabelSettings_6wg2q")
@@ -252,7 +248,7 @@ layer_0/tile_data = PackedInt32Array(-1769436, 458753, 536870912, -1703900, 4587
 
 [node name="GameCamera" type="Camera2D" parent="." groups=["game_camera"]]
 process_mode = 3
-position = Vector2(-226, 2132)
+position = Vector2(160, 26)
 zoom = Vector2(3, 3)
 process_callback = 0
 position_smoothing_speed = 30.0
@@ -264,7 +260,7 @@ script = ExtResource("5_3cbi4")
 
 [node name="Car" parent="." instance=ExtResource("7_7aral")]
 z_index = 1
-position = Vector2(-226, 2132)
+position = Vector2(159, 79)
 
 [node name="LevelAreaCityHub" type="Area2D" parent="." groups=["level_area"]]
 position = Vector2(158, 57)
@@ -1068,6 +1064,23 @@ shape = SubResource("RectangleShape2D_kisd1")
 [node name="RoadBlock1" parent="." instance=ExtResource("9_djylt")]
 position = Vector2(287, -199)
 trigger_dialogue_id = "dialogue_first_drift_zone"
+unlock_text = "City Plaza"
+
+[node name="PointLight2D3" type="PointLight2D" parent="RoadBlock1/Node2D" index="8"]
+position = Vector2(-93, 530)
+color = Color(0.298039, 0.380392, 0.0313726, 1)
+energy = 5.99
+shadow_enabled = true
+texture = ExtResource("3_8dul8")
+texture_scale = 1.92
+
+[node name="PointLight2D4" type="PointLight2D" parent="RoadBlock1/Node2D" index="9"]
+position = Vector2(63, 1822)
+color = Color(0.610299, 0.0829134, 0.346526, 1)
+energy = 5.99
+shadow_enabled = true
+texture = ExtResource("3_8dul8")
+texture_scale = 1.92
 
 [node name="CollisionShape2D" parent="RoadBlock1" index="1"]
 shape = SubResource("RectangleShape2D_axnaj")
@@ -1076,6 +1089,7 @@ shape = SubResource("RectangleShape2D_axnaj")
 position = Vector2(86, -199)
 required_rep = 200
 trigger_dialogue_id = "dialogue_docks_unlock"
+unlock_text = "Docks"
 
 [node name="PointLight2D2" parent="RoadBlock2/Node2D" index="7"]
 position = Vector2(0, 1)
@@ -1087,6 +1101,7 @@ shape = SubResource("RectangleShape2D_xoajl")
 position = Vector2(311, -752)
 rotation = -1.56935
 required_rep = 200
+unlock_text = "Docks"
 
 [node name="CollisionShape2D" parent="RoadBlock3" index="1"]
 scale = Vector2(1, 1)
@@ -1095,8 +1110,20 @@ shape = SubResource("RectangleShape2D_yupbb")
 [node name="RoadBlock4" parent="." instance=ExtResource("9_djylt")]
 position = Vector2(191, 230)
 required_rep = 500
+trigger_dialogue_id = "dialogue_finish_docks"
+unlock_text = "Mountain"
 
 [node name="CollisionShape2D" parent="RoadBlock4" index="1"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_yupbb")
+
+[node name="RoadBlock5" parent="." instance=ExtResource("9_djylt")]
+position = Vector2(349, 1594)
+required_rep = 2000
+trigger_dialogue_id = "dialogue_pre_final"
+unlock_text = "Serenity Peak"
+
+[node name="CollisionShape2D" parent="RoadBlock5" index="1"]
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yupbb")
 
@@ -1317,8 +1344,8 @@ default_color = Color(0, 0.980392, 0.85098, 0.2)
 
 [node name="DriftZone5" parent="DriftZones" instance=ExtResource("10_p1og6")]
 position = Vector2(-348, -855)
-points_stars2 = 700
-points_stars3 = 1100
+points_stars2 = 1200
+points_stars3 = 2000
 reputation = 150
 
 [node name="Line2D" parent="DriftZones/DriftZone5" index="0"]
@@ -1329,8 +1356,8 @@ default_color = Color(0, 0.980392, 0.85098, 0.2)
 
 [node name="DriftZone6" parent="DriftZones" instance=ExtResource("10_p1og6")]
 position = Vector2(-526, -367)
-points_stars2 = 700
-points_stars3 = 1100
+points_stars2 = 1800
+points_stars3 = 2700
 reputation = 150
 
 [node name="Line2D" parent="DriftZones/DriftZone6" index="0"]
@@ -1341,9 +1368,9 @@ default_color = Color(0, 0.980392, 0.85098, 0.2)
 
 [node name="DriftZone7" parent="DriftZones" instance=ExtResource("10_p1og6")]
 position = Vector2(318, 1001)
-points_stars2 = 700
-points_stars3 = 1100
-reputation = 500
+points_stars2 = 4000
+points_stars3 = 6300
+reputation = 1500
 
 [node name="Line2D" parent="DriftZones/DriftZone7" index="0"]
 position = Vector2(31, 1)
@@ -1388,7 +1415,7 @@ position = Vector2(-767, -493)
 position = Vector2(-299, -383)
 
 [node name="DZScore12" parent="DriftZones/Scores" node_paths=PackedStringArray("target_zone") instance=ExtResource("15_cxfx6")]
-position = Vector2(344, 676)
+position = Vector2(303, 676)
 target_zone = NodePath("../../DriftZone7")
 
 [node name="DZScore13" parent="DriftZones/Scores" instance=ExtResource("15_cxfx6")]
@@ -1654,6 +1681,31 @@ position = Vector2(272, -99.3643)
 rotation = 1.5708
 progress = 538.311
 
+[node name="Sign" type="Sprite2D" parent="."]
+z_index = 999
+position = Vector2(27.7667, -529.144)
+rotation = 0.0445496
+scale = Vector2(2.11566, 2.266)
+texture = ExtResource("20_icc3t")
+
+[node name="Label" type="Label" parent="Sign"]
+offset_left = -7.75769
+offset_top = -6.23957
+offset_right = 81.2423
+offset_bottom = 42.7604
+scale = Vector2(0.130646, 0.12381)
+text = "MOUNTAIN
+SOUTH"
+
+[node name="Car1" type="Sprite2D" parent="."]
+modulate = Color(0.341176, 0.701961, 0.576471, 1)
+position = Vector2(-211, 1840)
+rotation = -0.310289
+texture = ExtResource("13_x3teh")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Car1"]
+occluder = SubResource("OccluderPolygon2D_uyh48")
+
 [connection signal="body_entered" from="LevelAreaCityHub" to="LevelAreaCityHub" method="_on_body_entered"]
 [connection signal="body_exited" from="LevelAreaCityHub" to="LevelAreaCityHub" method="_on_body_exited"]
 [connection signal="body_entered" from="LevelAreaCityCenter" to="LevelAreaCityCenter" method="_on_body_entered"]
@@ -1671,6 +1723,7 @@ progress = 538.311
 [editable path="RoadBlock2"]
 [editable path="RoadBlock3"]
 [editable path="RoadBlock4"]
+[editable path="RoadBlock5"]
 [editable path="DriftZones/DriftZone1"]
 [editable path="DriftZones/DriftZone2"]
 [editable path="DriftZones/DriftZone3"]

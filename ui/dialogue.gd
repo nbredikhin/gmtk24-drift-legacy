@@ -31,7 +31,6 @@ func _process(delta: float) -> void:
 		_time += delta * 25.0
 		$Avatar.scale.y = 1.0 + cos(_time) * 0.07
 	else:
-		#$Avatar.scale = Vector2(1.0, 1.0)
 		_time = 0
 	
 	if Input.is_action_just_pressed("brake"):

@@ -2,6 +2,7 @@ extends StaticBody2D
 
 @export var required_rep := 50
 @export var trigger_dialogue_id := ""
+@export var unlock_text := "Area Unlocked"
 
 func _ready():
 	EventBus.reputation_changed.connect(_on_rep_change)
@@ -14,7 +15,7 @@ func _on_rep_change(rep: int):
 	if rep >= required_rep and $Node2D != null:
 		$Node2D.queue_free()
 		$CollisionShape2D.queue_free()
-		$LabelContainer/Label.text = "AREA UNLOCKED"
+		$LabelContainer/Label.text = unlock_text
 		$LabelContainer/Label.label_settings = $LabelContainer/Label.label_settings.duplicate()
 		$LabelContainer/Label.label_settings.font_color = Color.DARK_GREEN
 		if trigger_dialogue_id.is_empty() == false:

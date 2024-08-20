@@ -56,7 +56,7 @@ offset_top = -11.0
 offset_right = 69.0
 offset_bottom = 12.0
 scale = Vector2(0.517783, 0.46772)
-text = "500 PTS"
+text = "5000 PTS"
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 9.0
