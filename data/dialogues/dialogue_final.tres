@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=3 format=3 uid="uid://xbtqmwq44xju"]
+
+[ext_resource type="Texture2D" uid="uid://cos4migk1o44h" path="res://art/faces/grandfather_portrait.png" id="1_pgbso"]
+[ext_resource type="Script" path="res://scripts/dialogue_data.gd" id="2_esg3j"]
+
+[resource]
+script = ExtResource("2_esg3j")
+name = "Grandfather"
+name_color = Color(0.201443, 0.530938, 0.307217, 1)
+avatar = ExtResource("1_pgbso")
+lines = Array[String](["I'm proud af"])
