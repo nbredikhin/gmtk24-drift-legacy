@@ -6,6 +6,7 @@ var _text_duration := 2.0
 
 func _ready() -> void:
 	EventBus.player_dialogue.connect(_on_start_dialogue)
+	visible = false
 
 
 func _on_start_dialogue(dialogue_id: String):

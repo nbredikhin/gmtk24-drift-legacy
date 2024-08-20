@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=3 format=3 uid="uid://dg4l6lcavjktv"]
+
+[ext_resource type="Texture2D" uid="uid://cos4migk1o44h" path="res://art/faces/grandfather_portrait.png" id="1_d4lwn"]
+[ext_resource type="Script" path="res://scripts/dialogue_data.gd" id="2_un0e8"]
+
+[resource]
+script = ExtResource("2_un0e8")
+name = "Grandfather"
+name_color = Color(0.201443, 0.530938, 0.307217, 1)
+avatar = ExtResource("1_d4lwn")
+lines = Array[String](["Ah, Valora Plaza... Brings back memories of running from the cops here", "There are 3 drift zones, they are tricky, but nothing you can't handle", "Hit 200 REP here, and the city will start whispering your name"])

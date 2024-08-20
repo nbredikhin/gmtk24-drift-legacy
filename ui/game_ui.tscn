@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvri2q72111i"]
+[gd_scene load_steps=19 format=3 uid="uid://bvri2q72111i"]
 
 [ext_resource type="Script" path="res://ui/drift_zone_label.gd" id="1_gwvyc"]
 [ext_resource type="Script" path="res://ui/drift_points_label.gd" id="1_u43c4"]
 [ext_resource type="Script" path="res://ui/reputation_label.gd" id="2_1imve"]
 [ext_resource type="Texture2D" uid="uid://bysquhh88jtlk" path="res://art/icons/icon_star_empty.tres" id="3_goqsr"]
+[ext_resource type="Script" path="res://ui/error_label.gd" id="3_y4dtr"]
 [ext_resource type="Texture2D" uid="uid://c1no70bi0bq4l" path="res://art/icons/icon_star_fill.tres" id="4_bk448"]
 [ext_resource type="Texture2D" uid="uid://cos4migk1o44h" path="res://art/faces/grandfather_portrait.png" id="6_d1u8d"]
 [ext_resource type="Script" path="res://ui/dialogue.gd" id="6_e1ukd"]
@@ -18,8 +19,15 @@ shadow_size = 6
 shadow_color = Color(0.635294, 0.462745, 0.988235, 0.278431)
 shadow_offset = Vector2(2, 2)
 
+[sub_resource type="LabelSettings" id="LabelSettings_7lhjy"]
+font_size = 30
+font_color = Color(0.984314, 0, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_4vm48"]
 line_spacing = -5.0
+font_size = 28
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 4
@@ -34,7 +42,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_gsnpa"]
 font_size = 36
-font_color = Color(0.894118, 0.854902, 0, 1)
+font_color = Color(0.960784, 0.717647, 0.141176, 1)
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -78,9 +86,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -80.0
+offset_left = -615.0
 offset_top = 9.0
-offset_right = 80.0
+offset_right = -455.0
 offset_bottom = 80.0
 grow_horizontal = 2
 text = "DRIFT
@@ -104,6 +112,22 @@ text = "REPUTATION
 horizontal_alignment = 2
 script = ExtResource("2_1imve")
 
+[node name="ErrorLabel" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -294.0
+offset_top = 476.0
+offset_right = 300.0
+offset_bottom = 563.0
+grow_horizontal = 2
+text = "SOME PROBLEM HAPPENED PLEASE DIE OR CLOSE THE GAME"
+label_settings = SubResource("LabelSettings_7lhjy")
+horizontal_alignment = 1
+autowrap_mode = 3
+script = ExtResource("3_y4dtr")
+
 [node name="DriftZone" type="Control" parent="HUD"]
 layout_mode = 1
 anchors_preset = 15
@@ -116,16 +140,13 @@ script = ExtResource("1_gwvyc")
 [node name="DriftZoneLabel" type="Label" parent="HUD/DriftZone"]
 modulate = Color(1, 0.756863, 0.14902, 1)
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -177.0
-offset_top = -53.0
-offset_right = 177.0
+offset_left = -179.0
+offset_right = 175.0
+offset_bottom = 73.0
 grow_horizontal = 2
-grow_vertical = 0
 text = "DRIFT ZONE
 5,000"
 label_settings = SubResource("LabelSettings_4vm48")
@@ -231,6 +252,7 @@ one_shot = true
 
 [node name="Dialogue" type="Control" parent="HUD"]
 process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

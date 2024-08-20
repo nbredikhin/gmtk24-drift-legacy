@@ -12,3 +12,5 @@ signal reputation_changed(amount: int)
 
 signal player_dialogue(dialogue_id: String)
 signal player_enter_level_area(area: LevelArea)
+
+signal error_message(text: String)

@@ -8,4 +8,4 @@ script = ExtResource("2_ang2k")
 name = "Grandfather"
 name_color = Color(0.201443, 0.530938, 0.307217, 1)
 avatar = ExtResource("1_s2g26")
-lines = Array[String](["Yay next area is opened", "Go south"])
+lines = Array[String](["You're turning heads, kid! The docks are open now—a spot for real drifters", "Head west and show them what you've got."])

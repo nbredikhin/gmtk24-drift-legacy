@@ -27,38 +27,40 @@ outline_color = Color(0, 0, 0, 0.298039)
 position = Vector2(79, 89)
 script = ExtResource("1_05qma")
 
-[node name="Sprite2D7" type="Sprite2D" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D7" type="Sprite2D" parent="Node2D"]
 modulate = Color(1, 1, 1, 0.337255)
 position = Vector2(1, 4.31498)
 rotation = -1.5708
 scale = Vector2(0.34099, 64.7041)
 texture = SubResource("GradientTexture1D_yc3lk")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 position = Vector2(-8, 1)
 texture = ExtResource("1_qtvlf")
 
-[node name="Sprite2D6" type="Sprite2D" parent="."]
+[node name="Sprite2D6" type="Sprite2D" parent="Node2D"]
 position = Vector2(18, 1)
 texture = ExtResource("1_qtvlf")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
 position = Vector2(28, -1)
 texture = ExtResource("2_qayy5")
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
 position = Vector2(-24, -1)
 texture = ExtResource("3_mxoiu")
 
-[node name="Sprite2D4" type="Sprite2D" parent="."]
+[node name="Sprite2D4" type="Sprite2D" parent="Node2D"]
 position = Vector2(5, -1)
 texture = ExtResource("4_bn3qx")
 
-[node name="Sprite2D5" type="Sprite2D" parent="."]
+[node name="Sprite2D5" type="Sprite2D" parent="Node2D"]
 position = Vector2(-17, 1)
 texture = ExtResource("5_oxnr5")
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
+[node name="PointLight2D2" type="PointLight2D" parent="Node2D"]
 color = Color(0.741176, 0.027451, 0, 1)
 energy = 0.93
 shadow_enabled = true
@@ -71,9 +73,9 @@ shape = SubResource("RectangleShape2D_18o77")
 [node name="LabelContainer" type="Node2D" parent="."]
 
 [node name="Label" type="Label" parent="LabelContainer"]
-offset_left = -32.0
+offset_left = -69.0
 offset_top = -23.0
-offset_right = 34.0
+offset_right = 71.0
 text = "500 REP"
 label_settings = SubResource("LabelSettings_tavjc")
 horizontal_alignment = 1

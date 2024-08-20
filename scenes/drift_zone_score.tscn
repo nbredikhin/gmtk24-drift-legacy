@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx3cb1r37vgn8"]
+
+[ext_resource type="Script" path="res://scripts/drift_zone_score.gd" id="1_6wogr"]
+[ext_resource type="Texture2D" uid="uid://c1no70bi0bq4l" path="res://art/icons/icon_star_fill.tres" id="2_v4gxk"]
+
+[node name="DZScore1" type="Node2D"]
+position = Vector2(350, 238)
+script = ExtResource("1_6wogr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -30.0
+offset_top = -12.0
+offset_right = 45.0
+offset_bottom = 28.0
+color = Color(0.105882, 0.105882, 0.105882, 0.482353)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, -6)
+scale = Vector2(0.676795, 0.782932)
+texture = ExtResource("2_v4gxk")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, 7)
+scale = Vector2(0.676795, 0.782932)
+texture = ExtResource("2_v4gxk")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-10, 7)
+scale = Vector2(0.676795, 0.782932)
+texture = ExtResource("2_v4gxk")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, 19)
+scale = Vector2(0.676795, 0.782932)
+texture = ExtResource("2_v4gxk")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-10, 19)
+scale = Vector2(0.676795, 0.782932)
+texture = ExtResource("2_v4gxk")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-22, 19)
+scale = Vector2(0.676795, 0.782932)
+texture = ExtResource("2_v4gxk")
+
+[node name="Label1" type="Label" parent="."]
+offset_left = 9.0
+offset_top = -11.0
+offset_right = 69.0
+offset_bottom = 12.0
+scale = Vector2(0.517783, 0.46772)
+text = "500 PTS"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 69.0
+offset_bottom = 25.0
+scale = Vector2(0.517783, 0.46772)
+text = "500 PTS"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 14.0
+offset_right = 69.0
+offset_bottom = 37.0
+scale = Vector2(0.517783, 0.46772)
+text = "500 PTS"

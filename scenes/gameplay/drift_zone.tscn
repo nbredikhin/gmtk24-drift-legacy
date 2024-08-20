@@ -1,16 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://bskeq6qkxgqcs"]
+[gd_scene load_steps=8 format=3 uid="uid://bskeq6qkxgqcs"]
 
 [ext_resource type="Script" path="res://scripts/drift_zone.gd" id="1_3cwn3"]
+[ext_resource type="Shader" path="res://materials/drift_zone_shader.gdshader" id="2_cu408"]
+[ext_resource type="Texture2D" uid="uid://o07j3573kuwa" path="res://art/tileset_ground.png" id="3_iy8oe"]
 
-[node name="DriftZone1" type="Area2D"]
+[sub_resource type="Gradient" id="Gradient_nsw1d"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6t80v"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bwui0"]
+width = 32
+height = 32
+color_ramp = SubResource("Gradient_nsw1d")
+noise = SubResource("FastNoiseLite_6t80v")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ij11"]
+shader = ExtResource("2_cu408")
+shader_parameter/noise = SubResource("NoiseTexture2D_bwui0")
+
+[node name="DriftZone1" type="Area2D" groups=["drift_zone"]]
 position = Vector2(521, -79)
 script = ExtResource("1_3cwn3")
+hide_line = false
 
 [node name="Line2D" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_0ij11")
 position = Vector2(-6, -7)
-points = PackedVector2Array(-176, -4, 7, -5, 6, 183)
+points = PackedVector2Array(-176, -4, 6, -4, 6, 183)
 width = 90.0
-default_color = Color(0.858824, 0, 0.862745, 0.254902)
+texture = ExtResource("3_iy8oe")
+texture_mode = 2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

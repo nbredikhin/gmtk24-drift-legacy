@@ -8,4 +8,4 @@ script = ExtResource("2_3shek")
 name = "Grandfather"
 name_color = Color(0.201443, 0.530938, 0.307217, 1)
 avatar = ExtResource("1_y0poi")
-lines = Array[String](["Congratz on ur first drift zone", "There are 3 more in this area", "Complete them to unlock next area"])
+lines = Array[String](["Well done, kid! You've still got that fire in you. Just like I did...", "But it's only the beginning. There's a long road ahead", "Head to the plaza (East North), let's show what u're made of "])

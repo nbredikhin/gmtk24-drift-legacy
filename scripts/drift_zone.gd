@@ -7,6 +7,8 @@ extends Area2D
 
 @export var hide_line := true
 
+var _was_wrong_entered := false
+
 var _is_completed = false
 
 var _is_active := false
@@ -67,6 +69,7 @@ func _process(delta):
 	# Check if we have returned back too far
 	if next_dist - _min_dist_next > _max_return_dist:
 		print("went back too far: ", _max_segment_dist - segment_dist, ", max=", _max_return_dist)
+		EventBus.error_message.emit("Drift Zone Failed!\nWrong direction")
 		_end_drift_zone(false)
 		return
 	
@@ -133,6 +136,9 @@ func _on_body_entered(body: Node2D):
 	var nearest_index = _find_nearest_point(body.global_position)
 	if nearest_index != 0 and nearest_index != _points_count - 1:
 		print("DriftZone entered from wrong side")
+		if _was_wrong_entered == false:
+			_was_wrong_entered = true
+			EventBus.error_message.emit("Enter drift zone from start or end")
 		return
 		
 	# Determine whether we are on start or end of the line
@@ -161,6 +167,9 @@ func _on_body_exited(body):
 	var is_last_point = _current_point <= 1 or _current_point >= _points_count - 2
 	var is_completed = is_last_point and _max_segment_progress > 0.95
 	_end_drift_zone(is_completed)
+	
+	if not is_completed:
+		EventBus.error_message.emit("Drift Zone Failed!\nToo far from the road")
 	
 	if is_completed and not _is_completed:
 		get_tree().get_first_node_in_group("game_manager").add_reputation(reputation)

@@ -19,18 +19,20 @@ func _on_drift_zone_points(player: Car, points: int):
 	$DriftZoneLabel.text = str("DRIFT ZONE\n", Tools.thousands_sep(points))
 	
 	
-func _on_drift_zone_end(player: Car, zone: DriftZone, is_completed: bool, points: int):
-	$DriftZoneLabel.visible = false
-	
+func _on_drift_zone_end(player: Car, zone: DriftZone, is_completed: bool, points: int):	
 	if is_completed:
+		$DriftZoneLabel.visible = true
+		$DriftZoneLabel.text = str("\n",Tools.thousands_sep(points), " PTS")
 		$DriftZoneCompletedLabel.visible = true
 		$DriftZoneCompletedLabel/HideTimer.start()
 		
 		var stars_count = zone.get_stars(points)
 		for i in range(1, 4):
-			print(str("StarsFill",i))
 			$DriftZoneCompletedLabel.get_node(str("StarFill",i)).visible = stars_count >= i
+	else:
+		$DriftZoneLabel.visible = false
 
 
 func _on_hide_timer_timeout() -> void:
 	$DriftZoneCompletedLabel.visible = false
+	$DriftZoneLabel.visible = false

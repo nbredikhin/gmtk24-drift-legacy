@@ -1,12 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkj300tmtbslw"]
+[gd_scene load_steps=4 format=3 uid="uid://bkj300tmtbslw"]
 
 [ext_resource type="Texture2D" uid="uid://6h50v8172keh" path="res://art/drift_zone_banner.png" id="1_1jx35"]
 [ext_resource type="Texture2D" uid="uid://ds45sgblhrn2c" path="res://art/light_m.png" id="2_a4jh6"]
 
-[node name="DriftZoneBanner" type="Sprite2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ys1yb"]
+radius = 6.08277
+
+[node name="DriftZoneBanner" type="RigidBody2D"]
+z_index = 1
+texture_filter = 1
 position = Vector2(485, -63)
 rotation = 0.0649306
-texture = ExtResource("1_1jx35")
+mass = 5.0
+linear_damp = 17.711
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-1.02251, 15.0982)
@@ -14,3 +20,13 @@ color = Color(1, 0.933333, 0.188235, 1)
 energy = 3.26
 texture = ExtResource("2_a4jh6")
 texture_scale = 0.5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+rotation = 0.0649306
+texture = ExtResource("1_1jx35")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.284158, 11.0417)
+shape = SubResource("CircleShape2D_ys1yb")
